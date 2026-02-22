@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts Sorting Ceremony</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Hogwarts Sorting Ceremony</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Get Ready to be Sorted!</h2>
+            <p>Answer a few questions to find out which Hogwarts house you belong to.</p>
+            <button id="start-button">Start Sorting</button>
+        </section>
+        <section id="questions" style="display: none;">
+            <h2>Questions</h2>
+            <form id="sorting-form">
+                <!-- Questions will be inserted here -->
+            </form>
+            <button id="submit-button">Submit</button>
+        </section>
+        <section id="result" style="display: none;">
+            <h2>Your House</h2>
+            <p id="house-name"></p>
+            <button id="new-sort-button">Sort Again</button>
+        </section>
+    </main>
+    <footer>
+        <p>© 2026 Hogwarts School of Witchcraft and Wizardry</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
