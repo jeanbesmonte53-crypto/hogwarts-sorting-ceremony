@@ -1,1 +1,75 @@
-<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>Hogwarts Sorting Ceremony</title>\n    <style>\n        body {\n            font-family: Arial, sans-serif;\n            background-color: #f4f4f4;\n            text-align: center;\n            padding: 20px;\n        }\n        h1 {\n            color: #333;\n        }\n        .house {\n            padding: 15px;\n            border: 1px solid #ccc;\n            margin: 10px;\n            display: inline-block;\n            width: 200px;\n            cursor: pointer;\n        }\n        #result {\n            margin-top: 20px;\n            font-size: 24px;\n        }\n    </style>\n</head>\n<body>\n    <h1>Hogwarts Sorting Ceremony</h1>\n    <div class="house" onclick="sortStudent('Gryffindor')">Gryffindor</div>\n    <div class="house" onclick="sortStudent('Hufflepuff')">Hufflepuff</div>\n    <div class="house" onclick="sortStudent('Ravenclaw')">Ravenclaw</div>\n    <div class="house" onclick="sortStudent('Slytherin')">Slytherin</div>\n    <div id="result"></div>\n\n    <script>\n        function sortStudent(house) {\n            document.getElementById('result').innerText = 'Welcome to ' + house + '!';\n        }\n    <\/script>\n</body>\n</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hogwarts Sorting Ceremony</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; }
+        h1 { color: #4CAF50; }
+        .container { margin: 0 auto; padding: 20px; max-width: 600px; background: white; border-radius: 10px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hogwarts Sorting Ceremony</h1>
+        <div id="login">
+            <h2>Login</h2>
+            <input type="text" id="studentNumber" placeholder="Student Number" required>
+            <input type="text" id="studentName" placeholder="Name" required>
+            <select id="yearLevel">
+                <option value="">Select Year Level</option>
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+                <option value="5">5th Year</option>
+                <option value="6">6th Year</option>
+            </select>
+            <button onclick="login()">Login</button>
+        </div>
+        <div id="game" class="hidden">
+            <h2>Card Game</h2>
+            <button onclick="playCardGame()">Play Card Game</button>
+        </div>
+        <div id="admin" class="hidden">
+            <h2>Admin Dashboard</h2>
+            <button onclick="exportCSV()">Export CSV</button>
+        </div>
+    </div>
+    <script>
+        let students = [];
+        function login() {
+            const studentNumber = document.getElementById('studentNumber').value;
+            const studentName = document.getElementById('studentName').value;
+            const yearLevel = document.getElementById('yearLevel').value;
+            if (studentNumber && studentName && yearLevel) {
+                students.push({studentNumber, studentName, yearLevel});
+                document.getElementById('login').classList.add('hidden');
+                document.getElementById('game').classList.remove('hidden');
+                alert('Login successful! Welcome to the Hogwarts Sorting Ceremony!');
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+        function playCardGame() {
+            alert('Game started! Use your card wisely!');
+            // Additional game logic goes here
+        }
+        function exportCSV() {
+            let csvContent = 'data:text/csv;charset=utf-8,Student Number,Name,Year Level\n';
+            students.forEach(student => {
+                csvContent += student.studentNumber + ',' + student.studentName + ',' + student.yearLevel + '\n';
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement('a');
+            link.setAttribute('href', encodedUri);
+            link.setAttribute('download', 'students.csv');
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>
